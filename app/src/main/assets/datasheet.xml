@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <tableCols>
+    <id>1</id>
+    <tableId>1</tableId>
+    <colId>1</colId>
+    <tablename>报表例子</tablename>
+    <colValue>4</colValue>
+  </tableCols>
+  <tableCols>
+    <id>1</id>
+    <tableId>1</tableId>
+    <colId>2</colId>
+    <tablename>报表例子</tablename>
+    <colValue>1</colValue>
+  </tableCols>
+</NewDataSet>
