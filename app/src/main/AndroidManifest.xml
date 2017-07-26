@@ -30,13 +30,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".zxing.CaptureActivity"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="portrait"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"
             android:theme="@style/CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".zxing.CaptureFalseActivity"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="portrait"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"
             android:theme="@style/CaptureTheme"

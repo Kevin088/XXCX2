@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -17,9 +19,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.xxjc.com.R;
 import cn.xxjc.com.adapter.BaobiaoAdapter;
+import cn.xxjc.com.bean.ErWeiMa1Bean;
 import cn.xxjc.com.bean.Tables;
 import cn.xxjc.com.bean.User2Tables;
 import cn.xxjc.com.config.DfhePreference;
+import cn.xxjc.com.utils.GsonUtils;
 import cn.xxjc.com.view.TitleBarView;
 import cn.xxjc.com.view.ToastManager;
 import cn.xxjc.com.zxing.CaptureActivity;
@@ -37,7 +41,9 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     ArrayList<Tables> totalData_yes=new ArrayList<>();
     ArrayList<Tables> totalData_no=new ArrayList<>();
     private Tables table;
-
+    View headView;
+    private TextView headViewText;
+    ErWeiMa1Bean erWeiMa1Bean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +52,12 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).withRightImage(R.mipmap.ic_erweima).setOnTitleBarClickListener(this);
         totalData_yes.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),1));
         totalData_no.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),0));
-        totalData.addAll(totalData_yes);
         adapter=new BaobiaoAdapter(this,totalData,R.layout.item_baobiao);
         listivew.setAdapter(adapter);
         listivew.setOnItemClickListener(this);
+        headView= LayoutInflater.from(this).inflate(R.layout.head_text,null);
+        headViewText=headView.findViewById(R.id.tv_msg);
+
     }
     @Override
     public void onTitleBarClick(int titleId) {
@@ -67,6 +75,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        i--;
         table = totalData.get(i);
         Intent intent = new Intent(this, CollectDatactivity.class);
         intent.putExtra("tableId", table.id);
@@ -80,10 +89,21 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         if(requestCode==200)
             adapter.notifyDataSetChanged();
         if(requestCode==300&&resultCode==RESULT_OK){
-            ToastManager.showShortToast(data.getStringExtra("data"));
-            totalData.clear();
-            totalData.addAll(totalData_no);
-            adapter.notifyDataSetChanged();
+            String dataInfo=data.getStringExtra("data");
+
+            erWeiMa1Bean=null;
+            erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
+            if(erWeiMa1Bean!=null&&erWeiMa1Bean.tableid==1){
+                String info=erWeiMa1Bean.info.replace(";","\n");
+                headViewText.setText(info);
+                listivew.addHeaderView(headView);
+
+                totalData.clear();
+                totalData.addAll(totalData_no);
+                adapter.notifyDataSetChanged();
+            }else{
+                ToastManager.showShortToast("信息有误");
+            }
         }
 
     }
