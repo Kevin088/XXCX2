@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.xxjc.com.R;
 import cn.xxjc.com.adapter.BaobiaoAdapter;
+import cn.xxjc.com.app.App;
 import cn.xxjc.com.bean.ErWeiMa1Bean;
 import cn.xxjc.com.bean.Tables;
 import cn.xxjc.com.bean.User2Tables;
@@ -44,6 +45,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     View headView;
     private TextView headViewText;
     ErWeiMa1Bean erWeiMa1Bean;
+    boolean isadd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +54,15 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).withRightImage(R.mipmap.ic_erweima).setOnTitleBarClickListener(this);
         totalData_yes.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),1));
         totalData_no.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),0));
+
+        //totalData.addAll(totalData_no);
         adapter=new BaobiaoAdapter(this,totalData,R.layout.item_baobiao);
         listivew.setAdapter(adapter);
         listivew.setOnItemClickListener(this);
         headView= LayoutInflater.from(this).inflate(R.layout.head_text,null);
         headViewText=headView.findViewById(R.id.tv_msg);
 
+        //listivew.addHeaderView(headView);
     }
     @Override
     public void onTitleBarClick(int titleId) {
@@ -76,6 +81,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         i--;
+        App.clickCount+=1;
         table = totalData.get(i);
         Intent intent = new Intent(this, CollectDatactivity.class);
         intent.putExtra("tableId", table.id);
@@ -96,7 +102,11 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
             if(erWeiMa1Bean!=null&&erWeiMa1Bean.tableid==1){
                 String info=erWeiMa1Bean.info.replace(";","\n");
                 headViewText.setText(info);
-                listivew.addHeaderView(headView);
+                if(!isadd){
+                    listivew.addHeaderView(headView);
+                    isadd=true;
+                }
+
 
                 totalData.clear();
                 totalData.addAll(totalData_no);

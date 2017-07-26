@@ -15,6 +15,6 @@ public class FileUtil {
 
     public static String xmlPath="/storage/emulated/0/XXCJ/fileCache/";
     public static String xmlName1="Definition.xml";
-    public static String xmlName2="datasheet.xml";
-
+    public static String xmlName2_R= "datasheet_right.xml";
+    public static String xmlName2_E= "datasheet_error.xml";
 }

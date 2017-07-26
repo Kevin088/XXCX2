@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <tableCols>
+    <id>1</id>
+    <tableId>1</tableId>
+    <colId>1</colId>
+    <tablename>报表例子</tablename>
+    <colValue>4000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>2</id>
+    <tableId>1</tableId>
+    <colId>2</colId>
+    <tablename>报表例子</tablename>
+    <colValue>10000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>3</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+</NewDataSet>

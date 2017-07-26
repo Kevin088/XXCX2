@@ -8,10 +8,17 @@
     <colValue>4</colValue>
   </tableCols>
   <tableCols>
-    <id>1</id>
+    <id>2</id>
     <tableId>1</tableId>
     <colId>2</colId>
     <tablename>报表例子</tablename>
     <colValue>1</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>3</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3</colValue>
   </tableCols>
 </NewDataSet>

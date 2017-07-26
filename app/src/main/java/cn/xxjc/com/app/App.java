@@ -26,6 +26,7 @@ import cn.xxjc.com.utils.XmlParseUtil;
  */
 public class App extends Application {
     public static Context context;
+    public static int clickCount=-1;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,10 +43,12 @@ public class App extends Application {
     public void initData(){
         try {
             WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName1);
-            WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName2);
+            WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName2_R);
+            WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName2_E);
             XmlParseUtil.clearSize();
             XmlParseUtil.getDataFromDefinitionXml();
-            XmlParseUtil.getDataFromDataSheetXml();
+            XmlParseUtil.getDataFromDataSheetXml_R();
+            XmlParseUtil.getDataFromDataSheetXml_E();
             XmlParseUtil.rankData();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

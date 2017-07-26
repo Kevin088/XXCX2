@@ -33,7 +33,8 @@ public class XmlParseUtil {
     public static List<Tables> tables=new ArrayList<Tables>();
     public static List<TableCols> tableCols=new ArrayList<TableCols>();
     public static List<User2Tables> user2Tables=new ArrayList<User2Tables>();
-    public static List<TableColsValue> tableColsValues=new ArrayList<TableColsValue>();
+    public static List<TableColsValue> tableColsValues_R=new ArrayList<TableColsValue>();
+    public static List<TableColsValue> tableColsValues_E=new ArrayList<TableColsValue>();
     public static void getDataFromDefinitionXml() throws XmlPullParserException, IOException {
         User user=null;
         Tables table=null;
@@ -154,10 +155,10 @@ public class XmlParseUtil {
         }
     }
 
-    public static void getDataFromDataSheetXml() throws XmlPullParserException, IOException {
+    public static void getDataFromDataSheetXml_R() throws XmlPullParserException, IOException {
         TableColsValue tableColsValue=null;
         XmlPullParser pullParser = Xml.newPullParser();
-        InputStream inputStream1=new FileInputStream(FileUtil.xmlPath+FileUtil.xmlName2);
+        InputStream inputStream1=new FileInputStream(FileUtil.xmlPath+FileUtil.xmlName2_R);
         pullParser.setInput(inputStream1, "UTF-8"); //为Pull解释器设置要解析的XML数据
         int event = pullParser.getEventType();
         while (event != XmlPullParser.END_DOCUMENT){
@@ -183,14 +184,60 @@ public class XmlParseUtil {
                         tableColsValue.tablename=pullParser.nextText();
                     }
                     if("colValue".equals(pullParser.getName())){
-                        tableColsValue.colValue= Double.parseDouble(pullParser.nextText());
+                        tableColsValue.colValue= Integer.parseInt(pullParser.nextText());
                     }
 
                     break;
 
                 case XmlPullParser.END_TAG:
                     if ("tableCols".equals(pullParser.getName())){
-                        tableColsValues.add(tableColsValue);
+                        tableColsValues_R.add(tableColsValue);
+                        tableColsValue = null;
+                    }
+                    break;
+
+            }
+
+            event = pullParser.next();
+        }
+    }
+    public static void getDataFromDataSheetXml_E() throws XmlPullParserException, IOException {
+        TableColsValue tableColsValue=null;
+        XmlPullParser pullParser = Xml.newPullParser();
+        InputStream inputStream1=new FileInputStream(FileUtil.xmlPath+FileUtil.xmlName2_E);
+        pullParser.setInput(inputStream1, "UTF-8"); //为Pull解释器设置要解析的XML数据
+        int event = pullParser.getEventType();
+        while (event != XmlPullParser.END_DOCUMENT){
+            switch (event) {
+                case XmlPullParser.START_DOCUMENT:
+
+                    break;
+                case XmlPullParser.START_TAG:
+                    //表一
+                    if ("tableCols".equals(pullParser.getName())){
+                        tableColsValue = new TableColsValue();
+                    }
+                    if("id".equals(pullParser.getName())){
+                        tableColsValue.id= Integer.parseInt(pullParser.nextText());
+                    }
+                    if("tableId".equals(pullParser.getName())){
+                        tableColsValue.tableId= Integer.parseInt(pullParser.nextText());
+                    }
+                    if("colId".equals(pullParser.getName())){
+                        tableColsValue.colId= Integer.parseInt(pullParser.nextText());
+                    }
+                    if("tablename".equals(pullParser.getName())){
+                        tableColsValue.tablename=pullParser.nextText();
+                    }
+                    if("colValue".equals(pullParser.getName())){
+                        tableColsValue.colValue= Integer.parseInt(pullParser.nextText());
+                    }
+
+                    break;
+
+                case XmlPullParser.END_TAG:
+                    if ("tableCols".equals(pullParser.getName())){
+                        tableColsValues_E.add(tableColsValue);
                         tableColsValue = null;
                     }
                     break;
@@ -206,24 +253,26 @@ public class XmlParseUtil {
         user2Tables.clear();
         users.clear();
         tables.clear();
-        tableColsValues.clear();
+        tableColsValues_R.clear();
+        tableColsValues_E.clear();
     }
     public static void rankData(){
         Collections.sort(tableCols);
         Collections.sort(user2Tables);
         Collections.sort(users);
         Collections.sort(tables);
-        Collections.sort(tableColsValues);
+        Collections.sort(tableColsValues_R);
+        Collections.sort(tableColsValues_E);
     }
 
 
     public static void saveDataSheetXml() throws Exception {
-        OutputStream out=new FileOutputStream(FileUtil.xmlPath+FileUtil.xmlName2);
+        OutputStream out=new FileOutputStream(FileUtil.xmlPath+FileUtil.xmlName2_R);
         XmlSerializer serializer = Xml.newSerializer();
         serializer.setOutput(out, "UTF-8");
         serializer.startDocument("UTF-8", true);
         serializer.startTag(null, "NewDataSet");
-        for (TableColsValue value : tableColsValues) {
+        for (TableColsValue value : tableColsValues_R) {
             serializer.startTag(null, "tableCols");
 
             serializer.startTag(null, "id");

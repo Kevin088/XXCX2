@@ -67,7 +67,8 @@ public class CollectData2Adapter extends BaseAdapter {
             }
 
             viewHolder.name.setText(list.get(position).tColName);
-            viewHolder.value.setText(list.get(position).value+"");
+            if(list.get(position).value!=-1111)
+                viewHolder.value.setText(list.get(position).value+"");
             viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,9 +93,9 @@ public class CollectData2Adapter extends BaseAdapter {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    double value=0;
+                    int value=0;
                     try {
-                        value= Double.parseDouble(editText.getText().toString().trim());
+                        value= Integer.parseInt(editText.getText().toString().trim());
                     }catch (Exception e){
 
                     }
