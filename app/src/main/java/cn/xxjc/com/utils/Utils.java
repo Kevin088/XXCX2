@@ -1,6 +1,8 @@
 package cn.xxjc.com.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
@@ -111,4 +113,16 @@ public class Utils {
                 .getSystemService(Context.WINDOW_SERVICE);
         return windowManager.getDefaultDisplay().getHeight();
     }
+
+     public static String getVersion() {
+         try {
+                 PackageManager manager = App.getContext().getPackageManager();
+        PackageInfo info = manager.getPackageInfo(App.getContext().getPackageName(), 0);
+                String version = info.versionCode+"";
+                 return version;
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 return "1";
+            }
+     }
 }
