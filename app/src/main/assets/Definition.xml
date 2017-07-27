@@ -23,24 +23,96 @@
     <state>0</state>
   </tables>
   <tableCols>
-    <id>1</id>
-    <tColName>采集点位1</tColName>
+    <id>11</id>
+    <tColName>A组绝缘电阻（MΩ）</tColName>
     <tableId>1</tableId>
     <minNum>1</minNum>
     <maxNum>10</maxNum>
     <type>1</type>
   </tableCols>
   <tableCols>
-    <id>2</id>
-    <tColName>采集点位2</tColName>
+    <id>12</id>
+    <tColName>A组实测电容量（μF）</tColName>
     <tableId>1</tableId>
     <minNum>1</minNum>
     <maxNum>10</maxNum>
-    <type>2</type>
+    <type>1</type>
   </tableCols>
   <tableCols>
-    <id>3</id>
-    <tColName>采集点位3</tColName>
+    <id>13</id>
+    <tColName>A组交流耐压（KV）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>1</type>
+  </tableCols>
+  <tableCols>
+    <id>14</id>
+    <tColName>A组最大的相邻串联段电容量之比</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>1</type>
+  </tableCols>
+  <tableCols>
+    <id>21</id>
+    <tColName>B组绝缘电阻（MΩ）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>11</type>
+  </tableCols>
+  <tableCols>
+    <id>22</id>
+    <tColName>B组实测电容量（μF）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>12</type>
+  </tableCols>
+  <tableCols>
+    <id>23</id>
+    <tColName>B组交流耐压（KV）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>3</type>
+  </tableCols>
+  <tableCols>
+    <id>24</id>
+    <tColName>B组最大的相邻串联段电容量之比</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>3</type>
+  </tableCols>
+  <tableCols>
+    <id>31</id>
+    <tColName>C组绝缘电阻（MΩ）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>11</type>
+  </tableCols>
+  <tableCols>
+    <id>32</id>
+    <tColName>C组实测电容量（μF）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>12</type>
+  </tableCols>
+  <tableCols>
+    <id>33</id>
+    <tColName>C组交流耐压（KV）</tColName>
+    <tableId>1</tableId>
+    <minNum>1</minNum>
+    <maxNum>10</maxNum>
+    <type>3</type>
+  </tableCols>
+  <tableCols>
+    <id>34</id>
+    <tColName>C组最大的相邻串联段电容量之比</tColName>
     <tableId>1</tableId>
     <minNum>1</minNum>
     <maxNum>10</maxNum>

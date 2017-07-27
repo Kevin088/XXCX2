@@ -62,7 +62,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
 
         title.withTitle("待采数据", 0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
 
-        ArrayList<TableCols> tableColses = Utils.getTableColsInTable(tableId);
+        final ArrayList<TableCols> tableColses = Utils.getTableColsInTable(tableId);
         for (TableCols tableCol : tableColses) {
             tableCol.value = -1111;
         }
@@ -76,8 +76,10 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
             @Override
             public void onClickBack(int position) {
                 index=position;
-                Intent intent = new Intent(CollectDatactivity.this, CaptureActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_GENERAL_WEBIMAGE);
+                if(totalData.get(position).id%10==2){
+                    Intent intent = new Intent(CollectDatactivity.this, CaptureActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_GENERAL_WEBIMAGE);
+                }
             }
         };
 
@@ -135,7 +137,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                    List<TableCols> list= Utils.getTableColsInTable(tableId);
                     int isfullCaiji=1;
                     for(TableCols tableCol:list){
-                        if(tableCol.value==-1111){
+                        if(tableCol.value==-1111&&tableCol.id%10==2){
                             isfullCaiji=0;
                             break;
                         }
@@ -146,32 +148,34 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                     if(0==isfullCaiji){
                         ToastManager.showShortToast("数据未全部采集");
                     }else{
+                        String info="";
                         if(App.clickCount%2==0){
-                            setResult(RESULT_OK);
-                            finish();
+                            info= "采集数据合格";
                         }else {
+                            info= "采集数据不合格";
 
-                            final TipDialog dialog = new TipDialog(this);
-                            dialog.setIsShowTitle(false);
-                            dialog.setMessage("采集数据不合格");
-                            dialog.setStrOk("确定");
-                            dialog.setStrCancel("取消");
-                            dialog.setPositiveButton(new View.OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    setResult(RESULT_OK);
-                                    finish();
-                                }
-                            });
-                            dialog.setNegativeButton(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.cancel();
-                                }
-                            });
-                            dialog.show();
                         }
+
+                        final TipDialog dialog = new TipDialog(this);
+                        dialog.setIsShowTitle(false);
+                        dialog.setMessage(info);
+                        dialog.setStrOk("确定");
+                        dialog.setStrCancel("取消");
+                        dialog.setPositiveButton(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                setResult(RESULT_OK);
+                                finish();
+                            }
+                        });
+                        dialog.setNegativeButton(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.cancel();
+                            }
+                        });
+                        dialog.show();
 
                     }
                 break;

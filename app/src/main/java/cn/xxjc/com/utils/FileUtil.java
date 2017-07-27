@@ -13,7 +13,7 @@ public class FileUtil {
         return file;
     }
 
-    public static String xmlPath="/storage/emulated/0/XXCJ/fileCache/";
+    public static String xmlPath="/storage/emulated/0/XXCJ/"+Utils.getVersion()+"/";
     public static String xmlName1="Definition.xml";
     public static String xmlName2_R= "datasheet_right.xml";
     public static String xmlName2_E= "datasheet_error.xml";

@@ -1,6 +1,8 @@
 package cn.xxjc.com.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
@@ -37,7 +39,7 @@ public class Utils {
         return values;
     }
 
-    public static int getValueByTableColsId(int id){
+    public static double getValueByTableColsId(int id){
         if(App.clickCount%2==0){
             for(TableColsValue tableColsValue:XmlParseUtil.tableColsValues_R){
                 if(tableColsValue.colId==id){
@@ -52,7 +54,7 @@ public class Utils {
             }
         }
 
-        return 0;
+        return -1111;
     }
     public static double getValueFromStr(String str){
         try {
@@ -111,4 +113,16 @@ public class Utils {
                 .getSystemService(Context.WINDOW_SERVICE);
         return windowManager.getDefaultDisplay().getHeight();
     }
+
+     public static String getVersion() {
+         try {
+                 PackageManager manager = App.getContext().getPackageManager();
+        PackageInfo info = manager.getPackageInfo(App.getContext().getPackageName(), 0);
+                String version = info.versionCode+"";
+                 return version;
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 return "1";
+            }
+     }
 }

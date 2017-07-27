@@ -92,7 +92,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==200)
+        if(requestCode==200&&resultCode==RESULT_OK)
             adapter.notifyDataSetChanged();
         if(requestCode==300&&resultCode==RESULT_OK){
             String dataInfo=data.getStringExtra("data");

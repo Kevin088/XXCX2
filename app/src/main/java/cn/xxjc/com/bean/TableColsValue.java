@@ -11,7 +11,7 @@ public class TableColsValue implements Comparable {
     public int tableId;
     public int colId;
     public String tablename;
-    public int colValue;
+    public double colValue;
     @Override
     public int compareTo(Object o) {
         if(o!=null&&o instanceof TableColsValue){

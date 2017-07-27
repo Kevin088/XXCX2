@@ -3,21 +3,86 @@
   <tableCols>
     <id>1</id>
     <tableId>1</tableId>
-    <colId>1</colId>
+    <colId>11</colId>
     <tablename>报表例子</tablename>
     <colValue>4000</colValue>
   </tableCols>
   <tableCols>
     <id>2</id>
     <tableId>1</tableId>
-    <colId>2</colId>
+    <colId>12</colId>
     <tablename>报表例子</tablename>
-    <colValue>10000</colValue>
+    <colValue>81.70</colValue>
   </tableCols>
   <tableCols>
     <id>3</id>
     <tableId>1</tableId>
-    <colId>3</colId>
+    <colId>13</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>14</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+
+  <tableCols>
+    <id>1</id>
+    <tableId>1</tableId>
+    <colId>21</colId>
+    <tablename>报表例子</tablename>
+    <colValue>4000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>2</id>
+    <tableId>1</tableId>
+    <colId>22</colId>
+    <tablename>报表例子</tablename>
+    <colValue>108.8</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>23</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>24</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+
+  <tableCols>
+    <id>1</id>
+    <tableId>1</tableId>
+    <colId>31</colId>
+    <tablename>报表例子</tablename>
+    <colValue>4000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>2</id>
+    <tableId>1</tableId>
+    <colId>32</colId>
+    <tablename>报表例子</tablename>
+    <colValue>109.0</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>33</colId>
+    <tablename>报表例子</tablename>
+    <colValue>3000</colValue>
+  </tableCols>
+  <tableCols>
+    <id>3</id>
+    <tableId>1</tableId>
+    <colId>34</colId>
     <tablename>报表例子</tablename>
     <colValue>3000</colValue>
   </tableCols>
