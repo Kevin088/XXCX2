@@ -24,7 +24,7 @@ public class User2Tables implements Comparable {
         }
         return 0;
     }
-    public static ArrayList<Tables> getUserTables(int userId,int isCaiji){
+    public static ArrayList<Tables> getUserTables(int userId){
         ArrayList<Tables> tables=new ArrayList<>();
         ArrayList<Integer> tableIDs=new ArrayList<Integer>();
         for(User2Tables user2Table: XmlParseUtil.user2Tables){
@@ -33,7 +33,7 @@ public class User2Tables implements Comparable {
         }
         for(Integer id:tableIDs){
             int index = XmlParseUtil.tables.indexOf(new Tables(id));
-            if(index!=-1&&XmlParseUtil.tables.get(index).state==isCaiji){
+            if(index!=-1){
                 tables.add(XmlParseUtil.tables.get(index));
             }
 

@@ -39,30 +39,30 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     LinearLayout activityBaoBiao;
     BaobiaoAdapter adapter;
     ArrayList<Tables> totalData=new ArrayList<>();
-    ArrayList<Tables> totalData_yes=new ArrayList<>();
-    ArrayList<Tables> totalData_no=new ArrayList<>();
     private Tables table;
     View headView;
     private TextView headViewText;
     ErWeiMa1Bean erWeiMa1Bean;
-    boolean isadd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bao_biao);
         ButterKnife.bind(this);
-        title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).withRightImage(R.mipmap.ic_erweima).setOnTitleBarClickListener(this);
-        totalData_yes.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),1));
-        totalData_no.addAll(User2Tables.getUserTables(DfhePreference.getUserId(),0));
+        title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
 
-        //totalData.addAll(totalData_no);
+        totalData.addAll(User2Tables.getUserTables(DfhePreference.getUserId()));
         adapter=new BaobiaoAdapter(this,totalData,R.layout.item_baobiao);
         listivew.setAdapter(adapter);
         listivew.setOnItemClickListener(this);
         headView= LayoutInflater.from(this).inflate(R.layout.head_text,null);
         headViewText=headView.findViewById(R.id.tv_msg);
 
-        //listivew.addHeaderView(headView);
+        String dataInfo=getIntent().getStringExtra("data");
+        erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
+        String info=erWeiMa1Bean.info.replace(";","\n");
+        headViewText.setText(info);
+        listivew.addHeaderView(headView);
     }
     @Override
     public void onTitleBarClick(int titleId) {
@@ -71,7 +71,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
                 btnBackClick();
             break;
             case TitleBarView.TITLE_BAR_RIGHT_CLICK:
-                startActivityForResult(new Intent(this, CaptureActivity.class),300);
+               // startActivityForResult(new Intent(this, CaptureActivity.class),300);
                 break;
             default:
             break;
@@ -86,36 +86,8 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         Intent intent = new Intent(this, CollectDatactivity.class);
         intent.putExtra("tableId", table.id);
         intent.putExtra("tableName",totalData.get(i).tableName);
-        startActivityForResult(intent,200);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==200&&resultCode==RESULT_OK)
-            adapter.notifyDataSetChanged();
-        if(requestCode==300&&resultCode==RESULT_OK){
-            String dataInfo=data.getStringExtra("data");
-
-            erWeiMa1Bean=null;
-            erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
-            if(erWeiMa1Bean!=null&&erWeiMa1Bean.tableid==1){
-                String info=erWeiMa1Bean.info.replace(";","\n");
-                headViewText.setText(info);
-                if(!isadd){
-                    listivew.addHeaderView(headView);
-                    isadd=true;
-                }
-
-
-                totalData.clear();
-                totalData.addAll(totalData_no);
-                adapter.notifyDataSetChanged();
-            }else{
-                ToastManager.showShortToast("信息有误");
-            }
-        }
-
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -47,7 +47,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         findViewById(R.id.btn_login).setOnClickListener(this);
         titleLogin.withTitle("登录",0);
         if(DfhePreference.getIsLogin()){
-            startActivity(new Intent(this,BaoBiaoActivity.class));
+            startActivity(new Intent(this,HomeActivity.class));
             finish();
         }
     }

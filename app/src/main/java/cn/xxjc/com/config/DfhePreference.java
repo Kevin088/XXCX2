@@ -49,6 +49,14 @@ public class DfhePreference {
 		setInt("USER_ID", userId);
 	}
 
+	public static int getSaveCount() {
+		return getInt("SaveCount");
+	}
+
+	public static void setSaveCount(int SaveCount) {
+		setInt("SaveCount", SaveCount);
+	}
+
 	public static String getSex() {
 		return getString("USER_SEX");
 	}

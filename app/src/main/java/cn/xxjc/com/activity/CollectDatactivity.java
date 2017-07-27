@@ -24,6 +24,7 @@ import cn.xxjc.com.app.App;
 import cn.xxjc.com.bean.TableCols;
 import cn.xxjc.com.bean.TableColsValue;
 import cn.xxjc.com.bean.Tables;
+import cn.xxjc.com.config.DfhePreference;
 import cn.xxjc.com.utils.FileUtil;
 import cn.xxjc.com.utils.Utils;
 import cn.xxjc.com.utils.XmlParseUtil;
@@ -100,40 +101,6 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                 break;
             case R.id.tv_save:
                 //判断是否所有采集项 都采集了
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        List<TableCols> list= Utils.getTableColsInTable(tableId);
-//                        int isfullCaiji=1;
-//                        for(TableCols tableCol:list){
-//                            if(tableCol.value==0){
-//                                isfullCaiji=0;
-//                                break;
-//                            }
-//                        }
-//                        Tables table=XmlParseUtil.tables.get(XmlParseUtil.tables.indexOf(new Tables(tableId)));
-//                        table.state=isfullCaiji;
-//                        try {
-//                            XmlParseUtil.tableColsValues.clear();
-//                            int index=1;
-//                            for(TableCols tableCol:XmlParseUtil.tableCols){
-//                                TableColsValue valueBean=new TableColsValue();
-//                                valueBean.id=index;
-//                                valueBean.colId=tableCol.id;
-//                                valueBean.colValue=tableCol.value;
-//                                valueBean.tableId=tableId;
-//                                valueBean.tablename=tableName;
-//                                XmlParseUtil.tableColsValues.add(valueBean);
-//                                index++;
-//                            }
-//                            XmlParseUtil.saveDataSheetXml();
-//                            XmlParseUtil.saveDefinitionXml();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }).start();
-
                    List<TableCols> list= Utils.getTableColsInTable(tableId);
                     int isfullCaiji=1;
                     for(TableCols tableCol:list){
@@ -165,6 +132,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
 
                             @Override
                             public void onClick(View v) {
+                                DfhePreference.setSaveCount(DfhePreference.getSaveCount()+1);
                                 setResult(RESULT_OK);
                                 finish();
                             }
@@ -176,7 +144,6 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                             }
                         });
                         dialog.show();
-
                     }
                 break;
         }

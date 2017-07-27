@@ -17,4 +17,7 @@ public class FileUtil {
     public static String xmlName1="Definition.xml";
     public static String xmlName2_R= "datasheet_right.xml";
     public static String xmlName2_E= "datasheet_error.xml";
+
+    public static String result_txt_R= "正常报告-电容器组.doc";
+    public static String result_txt_E= "异常报告-电容器组.doc";
 }

@@ -45,6 +45,10 @@ public class App extends Application {
             WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName1);
             WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName2_R);
             WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.xmlName2_E);
+
+            WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.result_txt_R);
+            WriteToSD.WriteToSD(FileUtil.xmlPath, FileUtil.result_txt_E);
+
             XmlParseUtil.clearSize();
             XmlParseUtil.getDataFromDefinitionXml();
             XmlParseUtil.getDataFromDataSheetXml_R();

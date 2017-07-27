@@ -9,29 +9,11 @@
         style="@style/black_low_1_15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_centerVertical="true"
         android:textSize="14sp"
         android:text="报表名称"/>
-    <TextView
-        android:id="@+id/tv_name_is_right"
-        style="@style/black_low_1_15sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name"
-        android:textSize="11sp"
-        android:text="报表名称"
-        android:layout_marginTop="10dp"/>
-    <TextView
-        android:id="@+id/tv_statu"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/iv_baobiao"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/red"
-        android:text="未采集"/>
+
+
     <ImageView
         android:id="@+id/iv_baobiao"
         android:layout_width="wrap_content"
