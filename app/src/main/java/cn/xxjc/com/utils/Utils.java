@@ -39,7 +39,7 @@ public class Utils {
         return values;
     }
 
-    public static int getValueByTableColsId(int id){
+    public static double getValueByTableColsId(int id){
         if(App.clickCount%2==0){
             for(TableColsValue tableColsValue:XmlParseUtil.tableColsValues_R){
                 if(tableColsValue.colId==id){

@@ -12,7 +12,7 @@
     <tableId>1</tableId>
     <colId>12</colId>
     <tablename>报表例子</tablename>
-    <colValue>1000</colValue>
+    <colValue>81.70</colValue>
   </tableCols>
   <tableCols>
     <id>3</id>
@@ -41,7 +41,7 @@
     <tableId>1</tableId>
     <colId>22</colId>
     <tablename>报表例子</tablename>
-    <colValue>1000</colValue>
+    <colValue>108.8</colValue>
   </tableCols>
   <tableCols>
     <id>3</id>
@@ -70,7 +70,7 @@
     <tableId>1</tableId>
     <colId>32</colId>
     <tablename>报表例子</tablename>
-    <colValue>1000</colValue>
+    <colValue>109.0</colValue>
   </tableCols>
   <tableCols>
     <id>3</id>
