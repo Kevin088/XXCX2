@@ -52,7 +52,7 @@ public class Utils {
             }
         }
 
-        return 0;
+        return -1111;
     }
     public static double getValueFromStr(String str){
         try {

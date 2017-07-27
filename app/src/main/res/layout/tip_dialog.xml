@@ -56,7 +56,8 @@
             android:layout_height="1px"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/DialogText"
-            android:layout_marginTop="17dip" />
+            android:layout_marginTop="17dip"
+            android:background="@color/divide_line"/>
 
         <Button
             android:id="@+id/DialogOk"
@@ -97,6 +98,7 @@
                 android:layout_width="1px"
                 android:layout_height="49dip"
                 android:layout_alignParentTop="true"
+                android:background="@color/divide_line"
                 android:layout_toRightOf="@+id/TwoDialogCancel" />
 
             <Button

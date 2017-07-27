@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -46,25 +47,25 @@ public class CollectData2Adapter extends BaseAdapter {
 
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder = null;
-            if(convertView==null){
+            if(true){
                 convertView = inflater.inflate(R.layout.item_collect_data,
                         parent, false);
                 viewHolder=new ViewHolder();
                 viewHolder.name= (TextView) convertView.findViewById(R.id.tv_name);
                 viewHolder.value= (EditText) convertView.findViewById(R.id.tv_data);
-                viewHolder.imageView= (ImageView) convertView.findViewById(R.id.iv_see);
+                viewHolder.imageView= (RelativeLayout) convertView.findViewById(R.id.rl_see);
                 convertView.setTag(viewHolder);
             }else{
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            if(list.get(position).type==1){
-                viewHolder.value.setEnabled(true);
-                viewHolder.value.setFocusable(true);
-            }else if(list.get(position).type==2){
-                viewHolder.value.setEnabled(false);
-                viewHolder.value.setFocusable(false);
-            }
+//            if(list.get(position).type==1){
+//                viewHolder.value.setEnabled(true);
+//                viewHolder.value.setFocusable(true);
+//            }else if(list.get(position).type==2){
+//                viewHolder.value.setEnabled(false);
+//                viewHolder.value.setFocusable(false);
+//            }
 
             viewHolder.name.setText(list.get(position).tColName);
             if(list.get(position).value!=-1111)
@@ -110,7 +111,7 @@ public class CollectData2Adapter extends BaseAdapter {
         public class ViewHolder {
             public TextView name;
             public EditText value;
-            public ImageView imageView;
+            public RelativeLayout imageView;
         }
 
     public interface OnSeeClickBack{
