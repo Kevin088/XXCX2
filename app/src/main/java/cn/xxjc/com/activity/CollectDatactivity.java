@@ -137,7 +137,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                    List<TableCols> list= Utils.getTableColsInTable(tableId);
                     int isfullCaiji=1;
                     for(TableCols tableCol:list){
-                        if(tableCol.value==-1111){
+                        if(tableCol.value==-1111&&tableCol.id%10==2){
                             isfullCaiji=0;
                             break;
                         }
