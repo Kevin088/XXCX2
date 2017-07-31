@@ -259,7 +259,10 @@ public class CameraActivity extends FragmentActivity {
 //                        overlayView.setTypeWide();
 //                        showCrop();
 //                    } else {
-                        displayImageView.setImageBitmap(bitmap);
+
+
+                        //displayImageView.setImageBitmap(bitmap);
+                        displayImageView.setImageResource(R.drawable.bg_camera);
                         showResultConfirm();
 //                    }
                 }

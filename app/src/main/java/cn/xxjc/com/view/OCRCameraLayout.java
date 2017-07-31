@@ -13,8 +13,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import cn.xxjc.com.R;
+import cn.xxjc.com.app.App;
+import cn.xxjc.com.utils.Utils;
 
 public class OCRCameraLayout extends FrameLayout {
 
@@ -31,6 +34,9 @@ public class OCRCameraLayout extends FrameLayout {
     private int centerViewId;
     private int leftDownViewId;
     private int rightUpViewId;
+
+    private int bgImageId;
+    private ImageView ivBackground;
 
     public void setOrientation(int orientation) {
         if (this.orientation == orientation) {
@@ -68,6 +74,7 @@ public class OCRCameraLayout extends FrameLayout {
             centerViewId = a.getResourceId(R.styleable.OCRCameraLayout_centerView, -1);
             leftDownViewId = a.getResourceId(R.styleable.OCRCameraLayout_leftDownView, -1);
             rightUpViewId = a.getResourceId(R.styleable.OCRCameraLayout_rightUpView, -1);
+            bgImageId = a.getResourceId(R.styleable.OCRCameraLayout_bgImage, -1);
         } finally {
             a.recycle();
         }
@@ -82,6 +89,9 @@ public class OCRCameraLayout extends FrameLayout {
         }
         leftDownView = findViewById(leftDownViewId);
         rightUpView = findViewById(rightUpViewId);
+
+        ivBackground=findViewById(bgImageId);
+
     }
 
     private Rect backgroundRect = new Rect();
@@ -105,6 +115,23 @@ public class OCRCameraLayout extends FrameLayout {
             int contentHeight = width * 4 / 3;
             int heightLeft = height - contentHeight;
             contentView.layout(l, t, r, contentHeight);
+            //left, 0, right, bottom - top
+            if(ivBackground!=null) {
+                ivBackground.getBackground().setAlpha(180);
+                int w=contentView.getWidth();
+                int h=contentView.getHeight();
+
+                float ratio = h > w ? 0.9f : 0.72f;
+
+                int width1 = (int) (w * ratio);
+                int height1 = width * 400 / 620;
+
+                int left1 = (w - width1) / 2;
+                int top1 = (h - height1) / 2;
+                int right1 = width1 + left1;
+                int bottom1 = height1 + top1;
+                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),10),right1,bottom1-Utils.dipToPixels(App.getContext(),10));
+            }
 
             backgroundRect.left = 0;
             backgroundRect.top = contentHeight;
@@ -128,10 +155,30 @@ public class OCRCameraLayout extends FrameLayout {
             left = width - rightUpView.getMeasuredWidth() - rightUpViewLayoutParams.rightMargin;
             top = contentHeight + (heightLeft - rightUpView.getMeasuredHeight()) / 2;
             rightUpView.layout(left, top, left + rightUpView.getMeasuredWidth(), top + rightUpView.getMeasuredHeight());
+
+
         } else {
             int contentWidth = height * 4 / 3;
             int widthLeft = width - contentWidth;
             contentView.layout(l, t, contentWidth, height);
+
+            //left, 0, right, bottom - top
+            if(ivBackground!=null) {
+                ivBackground.getBackground().setAlpha(180);
+                int w=contentView.getWidth();
+                int h=contentView.getHeight();
+
+                float ratio = h > w ? 0.9f : 0.72f;
+
+                int width1 = (int) (w * ratio);
+                int height1 = width * 400 / 620;
+
+                int left1 = (w - width1) / 2;
+                int top1 = (h - height1) / 2;
+                int right1 = width1 + left1;
+                int bottom1 = height1 + top1;
+                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),10),right1,bottom1-Utils.dipToPixels(App.getContext(),10));
+            }
 
             backgroundRect.left = contentWidth;
             backgroundRect.top = 0;
@@ -155,6 +202,7 @@ public class OCRCameraLayout extends FrameLayout {
 
             top = rightUpViewLayoutParams.topMargin;
             rightUpView.layout(left, top, left + rightUpView.getMeasuredWidth(), top + rightUpView.getMeasuredHeight());
+
         }
     }
 

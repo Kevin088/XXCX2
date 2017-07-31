@@ -1,6 +1,7 @@
 package cn.xxjc.com.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,11 +23,12 @@ import cn.xxjc.com.bean.TableCols;
 public class CollectData2Adapter extends BaseAdapter {
         private LayoutInflater inflater;
         private List<TableCols> list;
-
+        Context context;
 
         public CollectData2Adapter(Context context, List<TableCols> list) {
             inflater = LayoutInflater.from(context);
             this.list=list;
+            this.context=context;
         }
 
 
@@ -59,17 +61,14 @@ public class CollectData2Adapter extends BaseAdapter {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-//            if(list.get(position).type==1){
-//                viewHolder.value.setEnabled(true);
-//                viewHolder.value.setFocusable(true);
-//            }else if(list.get(position).type==2){
-//                viewHolder.value.setEnabled(false);
-//                viewHolder.value.setFocusable(false);
-//            }
-
             viewHolder.name.setText(list.get(position).tColName);
-            if(list.get(position).value!=-1111)
+            if(list.get(position).value!=-1111){
                 viewHolder.value.setText(list.get(position).value+"");
+                viewHolder.name.setTextColor(ContextCompat.getColor(context,R.color.red));
+            }else{
+
+            }
+
             viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -9,11 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.xxjc.com.MainActivity;
 import cn.xxjc.com.R;
 import cn.xxjc.com.bean.User;
 import cn.xxjc.com.config.DfhePreference;
@@ -47,7 +45,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         findViewById(R.id.btn_login).setOnClickListener(this);
         titleLogin.withTitle("登录",0);
         if(DfhePreference.getIsLogin()){
-            startActivity(new Intent(this,HomeActivity.class));
+            startActivity(new Intent(this,MainBeforeActivity.class));
             finish();
         }
     }

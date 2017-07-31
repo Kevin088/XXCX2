@@ -10,12 +10,13 @@
         app:contentView="@+id/camera_view"
         app:leftDownView="@+id/album_button"
         app:centerView="@+id/take_photo_button"
-        app:rightUpView="@+id/light_button">
+        app:rightUpView="@+id/light_button"
+        app:bgImage="@+id/iv_camera_background">
 
     <cn.xxjc.com.view.CameraView
-            android:id="@+id/camera_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
             android:id="@+id/close_button"
@@ -59,5 +60,9 @@
             android:paddingBottom="3dp"
             android:src="@drawable/bd_ocr_light_off"
             />
-
+    <ImageView
+        android:id="@+id/iv_camera_background"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_camera"/>
 </cn.xxjc.com.view.OCRCameraLayout>

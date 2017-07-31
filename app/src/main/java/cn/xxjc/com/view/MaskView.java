@@ -12,6 +12,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.support.annotation.IntDef;
 import android.support.annotation.RequiresApi;
@@ -110,7 +111,7 @@ public class MaskView extends View {
     }
 
     private void init() {
-        locatorDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.bd_ocr_id_card_locator_front, null);
+        locatorDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.bg_camera, null);
     }
 
     @Override
@@ -149,26 +150,26 @@ public class MaskView extends View {
         int bottom = frame.bottom;
 
         canvas.drawColor(maskColor);
-        fillRectRound(left, top, right, bottom, 30, 30, false);
+        fillRectRound(left, top, right, bottom, 0, 0, false);
         canvas.drawPath(path, pen);
         canvas.drawPath(path, eraser);
 
-        if (maskType == MASK_TYPE_ID_CARD_FRONT) {
-            locatorDrawable.setBounds(
-                    (int) (left + 601f / 1006 * width),
-                    (int) (top + (110f / 632) * height),
-                    (int) (left + (963f / 1006) * width),
-                    (int) (top + (476f / 632) * height));
-        } else if (maskType == MASK_TYPE_ID_CARD_BACK) {
-            locatorDrawable.setBounds(
-                    (int) (left + 51f / 1006 * width),
-                    (int) (top + (48f / 632) * height),
-                    (int) (left + (250f / 1006) * width),
-                    (int) (top + (262f / 632) * height));
-        }
-        if (locatorDrawable != null) {
-            locatorDrawable.draw(canvas);
-        }
+//        if (maskType == MASK_TYPE_ID_CARD_FRONT) {
+//            locatorDrawable.setBounds(
+//                    (int) (left + 601f / 1006 * width),
+//                    (int) (top + (110f / 632) * height),
+//                    (int) (left + (963f / 1006) * width),
+//                    (int) (top + (476f / 632) * height));
+//        } else if (maskType == MASK_TYPE_ID_CARD_BACK) {
+//            locatorDrawable.setBounds(
+//                    (int) (left + 51f / 1006 * width),
+//                    (int) (top + (48f / 632) * height),
+//                    (int) (left + (250f / 1006) * width),
+//                    (int) (top + (262f / 632) * height));
+//        }
+//        if (locatorDrawable != null) {
+//            locatorDrawable.draw(canvas);
+//        }
     }
 
     private Path path = new Path();
@@ -229,4 +230,6 @@ public class MaskView extends View {
     private void capture(File file) {
 
     }
+
+
 }

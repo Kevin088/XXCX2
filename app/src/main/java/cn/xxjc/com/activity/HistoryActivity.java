@@ -25,7 +25,7 @@ import cn.xxjc.com.view.TitleBarView;
 import cn.xxjc.com.view.ToastManager;
 import cn.xxjc.com.zxing.CaptureActivity;
 
-public class HomeActivity extends FragmentActivity implements TitleBarView.OnTitleBarClickListener, AdapterView.OnItemClickListener {
+public class HistoryActivity extends FragmentActivity implements TitleBarView.OnTitleBarClickListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.title)
     TitleBarView title;
@@ -40,7 +40,7 @@ public class HomeActivity extends FragmentActivity implements TitleBarView.OnTit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).withRightImage(R.mipmap.ic_erweima).setOnTitleBarClickListener(this);
+        title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
 
 
         int count= DfhePreference.getSaveCount();
@@ -63,33 +63,13 @@ public class HomeActivity extends FragmentActivity implements TitleBarView.OnTit
                 finish();
                 break;
             case TitleBarView.TITLE_BAR_RIGHT_CLICK:
-                startActivityForResult(new Intent(this, CaptureActivity.class),300);
+
                 break;
             default:
                 break;
         }
     }
 
-    ErWeiMa1Bean erWeiMa1Bean;
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==300&&resultCode==RESULT_OK){
-            String dataInfo=data.getStringExtra("data");
-
-            erWeiMa1Bean=null;
-            erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
-            if(erWeiMa1Bean!=null&&erWeiMa1Bean.tableid==1){
-                Intent intent=new Intent(this,BaoBiaoActivity.class);
-                intent.putExtra("data",dataInfo);
-                startActivity(intent);
-
-            }else{
-                ToastManager.showShortToast("信息有误");
-            }
-        }
-
-    }
 
     @Override
     protected void onRestart() {
