@@ -49,7 +49,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bao_biao);
         ButterKnife.bind(this);
-        title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
+        title.withTitle("被测设备信息",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
 
         totalData.addAll(User2Tables.getUserTables(DfhePreference.getUserId()));
         adapter=new BaobiaoAdapter(this,totalData,R.layout.item_baobiao);

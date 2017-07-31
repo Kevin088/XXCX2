@@ -130,7 +130,7 @@ public class OCRCameraLayout extends FrameLayout {
                 int top1 = (h - height1) / 2;
                 int right1 = width1 + left1;
                 int bottom1 = height1 + top1;
-                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),10),right1,bottom1-Utils.dipToPixels(App.getContext(),10));
+                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),20),right1,bottom1-Utils.dipToPixels(App.getContext(),20));
             }
 
             backgroundRect.left = 0;
@@ -177,7 +177,7 @@ public class OCRCameraLayout extends FrameLayout {
                 int top1 = (h - height1) / 2;
                 int right1 = width1 + left1;
                 int bottom1 = height1 + top1;
-                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),10),right1,bottom1-Utils.dipToPixels(App.getContext(),10));
+                ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),20),right1,bottom1-Utils.dipToPixels(App.getContext(),20));
             }
 
             backgroundRect.left = contentWidth;
