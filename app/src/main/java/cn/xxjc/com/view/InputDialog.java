@@ -40,12 +40,13 @@ public class InputDialog extends Dialog {
 	public static String strWendu;
 	public static String strShidu;
 	public static String strPeople;
+	public static String strDanwei;
 
 	RadioGroup radioGroup;
 	EditText edTianqi;
 	EditText edWendu;
 	EditText edShidu;
-	EditText edPeople;
+	EditText edPeople,etDanwei;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class InputDialog extends Dialog {
 		edWendu=(EditText) findViewById(R.id.et_dialog_wendu);
 		edShidu=(EditText) findViewById(R.id.et_dialog_shidu);
 		edPeople=(EditText) findViewById(R.id.et_dialog_people);
-
+		etDanwei=(EditText) findViewById(R.id.et_dialog_danwei);
 
 		btnCancel = (Button) findViewById(R.id.TwoDialogCancel);
 		btnCancel.setOnClickListener(NegativeButton);
@@ -73,18 +74,18 @@ public class InputDialog extends Dialog {
 				strWendu=edWendu.getText().toString().trim();
 				strShidu=edShidu.getText().toString().trim();
 				strPeople=edPeople.getText().toString().trim();
-
-				;
+				strDanwei=etDanwei.getText().toString().trim();
 				RadioButton rb = (RadioButton)InputDialog.this.findViewById(radioGroup.getCheckedRadioButtonId());
 				//更新文本内容，以符合选中项
 				strXingzhi=rb.getText().toString();
 
 				if(TextUtils.isEmpty(strTianqi)||TextUtils.isEmpty(strWendu)
 						||TextUtils.isEmpty(strShidu)||TextUtils.isEmpty(strPeople)
-						||TextUtils.isEmpty(strXingzhi)){
+						||TextUtils.isEmpty(strXingzhi)||TextUtils.isEmpty(strDanwei)){
 					ToastManager.showShortToast("请完善信息");
 				}else{
 					InputDialog.this.cancel();
+					PositiveButton.onClick(view);
 				}
 
 
@@ -95,7 +96,9 @@ public class InputDialog extends Dialog {
 	public void  setNegetiveListener(View.OnClickListener listener){
 		this.NegativeButton=listener;
 	}
-
+	public void  setPositiveListener(View.OnClickListener listener){
+		this.PositiveButton=listener;
+	}
 	
 
 

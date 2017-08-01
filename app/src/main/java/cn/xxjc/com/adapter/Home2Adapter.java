@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Objects;
 
 import cn.xxjc.com.R;
+import cn.xxjc.com.bean.TableResults;
+import cn.xxjc.com.utils.Utils;
 
 /**
  * 类描述:
@@ -22,10 +24,10 @@ import cn.xxjc.com.R;
  */
 public class Home2Adapter extends BaseAdapter {
     private LayoutInflater inflater;
-    private List<Integer> list;
+    private List<TableResults> list;
 
 
-    public Home2Adapter(Context context, List<Integer> list) {
+    public Home2Adapter(Context context, List<TableResults> list) {
         inflater = LayoutInflater.from(context);
         this.list = list;
     }
@@ -51,18 +53,32 @@ public class Home2Adapter extends BaseAdapter {
                     parent, false);
             viewHolder = new ViewHolder();
             viewHolder.name = (TextView) convertView.findViewById(R.id.tv_name_is_right);
+            viewHolder.tvNmae=(TextView) convertView.findViewById(R.id.tv_name);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
 
+        if(list.get(position).getState()==0){
+            viewHolder.name.setText("异常报告-电容器组");
+        }else{
+            viewHolder.name.setText("正常报告-电容器组");
 
-        viewHolder.name.setText(list.get(position)%2==1?"正常报告-电容器组":"异常报告-电容器组");
+        }
+        TableResults tableResults=list.get(position);
+        viewHolder.tvNmae.setText(tableResults.getZhanming()+"-"+
+                tableResults.getYunxingbianhao()+"-"+
+                tableResults.getShiyandanwei()+"-"+
+                tableResults.getShiyanxingzhi()+"-"+
+                Utils.FormatDateTime(tableResults.getTestTime())
+        );
+
         return convertView;
     }
 
     public class ViewHolder {
         public TextView name;
+        public TextView tvNmae;
     }
 }

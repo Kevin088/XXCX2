@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
@@ -7,10 +8,15 @@ android {
         applicationId "cn.xxjc.com"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 3
+        versionCode 4
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    greendao {
+        schemaVersion 1
+        daoPackage 'cn.xxjc.com.dao'
+        targetGenDir 'src/main/java'
     }
     buildTypes {
         release {
@@ -18,11 +24,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
+
+
 
 dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.code.gson:gson:2.6.2'
     compile project(':zxinglib')
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'org.greenrobot:greendao:3.2.0' // add library
+    testCompile 'junit:junit:4.12'
 }

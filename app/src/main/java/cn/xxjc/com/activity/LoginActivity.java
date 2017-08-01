@@ -68,7 +68,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 isRight=true;
                 DfhePreference.setIsLogin(true);
                 DfhePreference.setUserId(user.id);
-                startActivity(new Intent(this, BaoBiaoActivity.class));
+                startActivity(new Intent(this, MainBeforeActivity.class));
                 finish();
                 return;
             }

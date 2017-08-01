@@ -87,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:padding="3dp"
+                android:inputType="number"
                 android:background="@drawable/bg_gray_slide"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -108,10 +109,32 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
+                android:inputType="number"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_gray_slide"
                 android:textSize="12sp"/>
         </LinearLayout>
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="试验人员:"/>
+        <EditText
+            android:id="@+id/et_dialog_people"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_gray_slide"
+            android:textSize="12sp"/>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,9 +146,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="试验人员:"/>
+                android:text="试验单位:"/>
             <EditText
-                android:id="@+id/et_dialog_people"
+                android:id="@+id/et_dialog_danwei"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="3dp"

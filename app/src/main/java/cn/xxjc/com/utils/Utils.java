@@ -7,7 +7,9 @@ import android.text.TextUtils;
 import android.view.WindowManager;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cn.xxjc.com.app.App;
 import cn.xxjc.com.bean.TableCols;
@@ -125,4 +127,9 @@ public class Utils {
                  return "1";
             }
      }
+    public static String FormatDateTime(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(date);
+    }
 }

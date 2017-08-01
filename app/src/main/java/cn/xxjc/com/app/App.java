@@ -6,6 +6,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+
 
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -14,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import cn.xxjc.com.dao.DaoMaster;
+import cn.xxjc.com.dao.DaoSession;
 import cn.xxjc.com.utils.FileUtil;
 import cn.xxjc.com.utils.WriteToSD;
 import cn.xxjc.com.utils.XmlParseUtil;
@@ -27,11 +31,17 @@ import cn.xxjc.com.utils.XmlParseUtil;
 public class App extends Application {
     public static Context context;
     public static int clickCount=-1;
+    private DaoMaster.DevOpenHelper mHelper;
+    private static SQLiteDatabase db;
+    private  DaoMaster mDaoMaster;
+    private static DaoSession mDaoSession;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         context=getApplicationContext();
-
+        setDatabase();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -107,5 +117,27 @@ public class App extends Application {
             e.printStackTrace();
             return "";
         }
+    }
+
+
+    /**
+     * 设置greenDao
+     */
+    private void setDatabase() {
+        // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
+        // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。
+        // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。
+        // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。
+        mHelper = new DaoMaster.DevOpenHelper(this, "notes-db", null);
+        db = mHelper.getWritableDatabase();
+        // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
+        mDaoMaster = new DaoMaster(db);
+        mDaoSession = mDaoMaster.newSession();
+    }
+    public static DaoSession getDaoSession() {
+        return mDaoSession;
+    }
+    public static SQLiteDatabase getDb() {
+        return db;
     }
 }

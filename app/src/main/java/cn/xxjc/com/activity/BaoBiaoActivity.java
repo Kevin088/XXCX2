@@ -43,7 +43,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     View headView;
     private TextView headViewText;
     ErWeiMa1Bean erWeiMa1Bean;
-
+    public static String [] info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +60,7 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
 
         String dataInfo=getIntent().getStringExtra("data");
         erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
+        info=erWeiMa1Bean.info.split(";");
         String info=erWeiMa1Bean.info.replace(";","\n");
         headViewText.setText(info);
         listivew.addHeaderView(headView);

@@ -17,7 +17,9 @@ import butterknife.ButterKnife;
 import cn.xxjc.com.R;
 import cn.xxjc.com.adapter.Home2Adapter;
 import cn.xxjc.com.adapter.HomeAdapter;
+import cn.xxjc.com.app.App;
 import cn.xxjc.com.bean.ErWeiMa1Bean;
+import cn.xxjc.com.bean.TableResults;
 import cn.xxjc.com.config.DfhePreference;
 import cn.xxjc.com.utils.FileUtil;
 import cn.xxjc.com.utils.GsonUtils;
@@ -33,7 +35,7 @@ public class HistoryActivity extends FragmentActivity implements TitleBarView.On
     ListView listivew;
     @Bind(R.id.activity_bao_biao)
     LinearLayout activityBaoBiao;
-    ArrayList<Integer>totalData=new ArrayList<Integer>();
+    ArrayList<TableResults>totalData=new ArrayList<TableResults>();
     Home2Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,7 @@ public class HistoryActivity extends FragmentActivity implements TitleBarView.On
         ButterKnife.bind(this);
         title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
 
-
-        int count= DfhePreference.getSaveCount();
-
-        for(int i=1;i<=count;i++){
-            totalData.add(i);
-        }
+        totalData.addAll(App.getDaoSession().getTableResultsDao().loadAll());
 
         adapter=new Home2Adapter(this,totalData);
         listivew.setAdapter(adapter);
@@ -74,12 +71,7 @@ public class HistoryActivity extends FragmentActivity implements TitleBarView.On
     @Override
     protected void onRestart() {
         super.onRestart();
-        int count= DfhePreference.getSaveCount();
-        totalData.clear();
-        for(int i=1;i<=count;i++){
-            totalData.add(i);
-        }
-        adapter.notifyDataSetChanged();
+
     }
 
     @Override

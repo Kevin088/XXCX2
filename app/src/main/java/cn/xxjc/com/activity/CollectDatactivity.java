@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -19,6 +20,7 @@ import cn.xxjc.com.adapter.CollectData2Adapter;
 import cn.xxjc.com.adapter.CollectDataAdapter;
 import cn.xxjc.com.app.App;
 import cn.xxjc.com.bean.TableCols;
+import cn.xxjc.com.bean.TableResults;
 import cn.xxjc.com.bean.Tables;
 import cn.xxjc.com.config.DfhePreference;
 import cn.xxjc.com.utils.Utils;
@@ -28,6 +30,7 @@ import cn.xxjc.com.view.TipDialog;
 import cn.xxjc.com.view.TitleBarView;
 import cn.xxjc.com.view.ToastManager;
 import cn.xxjc.com.zxing.CaptureActivity;
+import cn.xxjc.com.zxing.Intents;
 
 public class CollectDatactivity extends FragmentActivity implements TitleBarView.OnTitleBarClickListener, View.OnClickListener {
     CollectData2Adapter adapter;
@@ -52,6 +55,9 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
     @Bind(R.id.title_detail)
     TextView titleDetail;
 
+    String zhanming;
+    String bianhao;
+    Date date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +100,29 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                 finish();
             }
         });
+        inputDialog.setPositiveListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date=new Date();
+                titleDetail.setText("并联电容电气试验报告（共体）\n"+zhanming+"-"+bianhao+"-"
+                        +InputDialog.strDanwei+"-"+InputDialog.strXingzhi+"-"+Utils.FormatDateTime(date ));
+            }
+        });
         inputDialog.show();
 
-        titleDetail.setText("并联电容电气试验报告（共体）”\n+报告名称“站名-运行编号-试验单位-试验性质-[试验日期]");
+        if(BaoBiaoActivity.info!=null){
+            String[]info=BaoBiaoActivity.info;
+            for(int i=0;i<info.length;i++){
+                if(info[i].contains("站名")){
+                    zhanming=info[i].substring(info[i].indexOf("：")+1);
+                }else if(info[i].contains("运行编号")){
+                    bianhao=info[i].substring(info[i].indexOf("：")+1);
+                }
+            }
+        }
+
+
+
     }
 
     @Override
@@ -127,7 +153,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
                     ToastManager.showShortToast("数据未全部采集");
                 } else {
                     String info = "";
-                    if (App.clickCount % 2 == 0) {
+                    if (App.getDaoSession().getTableResultsDao().count()% 2 == 0) {
                         info = "采集数据合格";
                     } else {
                         info = "采集数据不合格";
@@ -143,8 +169,18 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
 
                         @Override
                         public void onClick(View v) {
-                            DfhePreference.setSaveCount(DfhePreference.getSaveCount() + 1);
+                            TableResults tableResults=new TableResults();
+                            tableResults.setShiyandanwei(InputDialog.strDanwei);
+                            tableResults.setShiyanxingzhi(InputDialog.strXingzhi);
+                            tableResults.setZhanming(zhanming);
+                            tableResults.setState((int)App.getDaoSession().getTableResultsDao().count()% 2==0?1:0);
+                            tableResults.setYunxingbianhao(bianhao);
+                            tableResults.setTestTime(date);
+
+                            App.getDaoSession().getTableResultsDao().insert(tableResults);
+
                             setResult(RESULT_OK);
+                            startActivity(new Intent(CollectDatactivity.this, HistoryActivity.class));
                             finish();
                         }
                     });
