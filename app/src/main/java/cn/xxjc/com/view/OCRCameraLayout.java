@@ -112,6 +112,7 @@ public class OCRCameraLayout extends FrameLayout {
         ViewGroup.MarginLayoutParams leftDownViewLayoutParams = (MarginLayoutParams) leftDownView.getLayoutParams();
         ViewGroup.MarginLayoutParams rightUpViewLayoutParams = (MarginLayoutParams) rightUpView.getLayoutParams();
         if (r < b) {
+            //设置预览的布局
             int contentHeight = width * 4 / 3;
             int heightLeft = height - contentHeight;
             contentView.layout(l, t, r, contentHeight);
@@ -132,13 +133,13 @@ public class OCRCameraLayout extends FrameLayout {
                 int bottom1 = height1 + top1;
                 ivBackground.layout(left1,top1+ Utils.dipToPixels(App.getContext(),20),right1,bottom1-Utils.dipToPixels(App.getContext(),20));
             }
-
+            //底部背景色
             backgroundRect.left = 0;
             backgroundRect.top = contentHeight;
             backgroundRect.right = width;
             backgroundRect.bottom = height;
 
-            // layout centerView;
+            // layout centerView; //拍照按钮
             if (centerView != null) {
                 left = (width - centerView.getMeasuredWidth()) / 2;
                 top = contentHeight + (heightLeft - centerView.getMeasuredHeight()) / 2;
@@ -151,7 +152,7 @@ public class OCRCameraLayout extends FrameLayout {
             top = contentHeight + (heightLeft - leftDownView.getMeasuredHeight()) / 2;
             leftDownView
                     .layout(left, top, left + leftDownView.getMeasuredWidth(), top + leftDownView.getMeasuredHeight());
-            // layout rightUpView
+            // layout rightUpView 灯泡按钮的布局
             left = width - rightUpView.getMeasuredWidth() - rightUpViewLayoutParams.rightMargin;
             top = contentHeight + (heightLeft - rightUpView.getMeasuredHeight()) / 2;
             rightUpView.layout(left, top, left + rightUpView.getMeasuredWidth(), top + rightUpView.getMeasuredHeight());
