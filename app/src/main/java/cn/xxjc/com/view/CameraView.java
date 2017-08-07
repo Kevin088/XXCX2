@@ -267,9 +267,13 @@ public class CameraView extends FrameLayout {
             options.inScaled = true;
             options.inDensity = Math.max(options.outWidth, options.outHeight);
             options.inTargetDensity = size;
-
+            /**
+             * 图片裁剪
+             */
             Bitmap bitmap = decoder.decodeRegion(region, options);
-
+            /**
+             * 图片旋转
+             */
             if (rotation != 0) {
                 // 只能是裁剪完之后再旋转了。有没有别的更好的方案呢？
                 Matrix matrix = new Matrix();
@@ -288,6 +292,9 @@ public class CameraView extends FrameLayout {
                 if (outputFile!=null&&!outputFile.exists()) {
                     outputFile.createNewFile();
                 }
+                /**
+                 * 图片压缩到本地
+                 */
                 FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
                 fileOutputStream.flush();
