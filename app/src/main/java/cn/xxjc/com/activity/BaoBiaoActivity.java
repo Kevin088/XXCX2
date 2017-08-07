@@ -40,7 +40,6 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
     BaobiaoAdapter adapter;
     ArrayList<Tables> totalData=new ArrayList<>();
     private Tables table;
-    View headView;
     private TextView headViewText;
     ErWeiMa1Bean erWeiMa1Bean;
     public static String [] info;
@@ -55,15 +54,13 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         adapter=new BaobiaoAdapter(this,totalData,R.layout.item_baobiao);
         listivew.setAdapter(adapter);
         listivew.setOnItemClickListener(this);
-        headView= LayoutInflater.from(this).inflate(R.layout.head_text,null);
-        headViewText=headView.findViewById(R.id.tv_msg);
+        headViewText=findViewById(R.id.tv_msg);
 
         String dataInfo=getIntent().getStringExtra("data");
         erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
         info=erWeiMa1Bean.info.split(";");
         String info=erWeiMa1Bean.info.replace(";","\n");
         headViewText.setText(info);
-        listivew.addHeaderView(headView);
     }
     @Override
     public void onTitleBarClick(int titleId) {
@@ -81,7 +78,6 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        i--;
         App.clickCount+=1;
         table = totalData.get(i);
         Intent intent = new Intent(this, CollectDatactivity.class);

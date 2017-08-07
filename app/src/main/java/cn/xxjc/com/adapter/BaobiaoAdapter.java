@@ -23,6 +23,6 @@ public class BaobiaoAdapter extends CommonAdapter<Tables> {
 
     @Override
     public void convert(ViewHolder holder, Tables item) {
-        holder.setTextViewText(R.id.tv_name,"相关报告类型");
+        //holder.setTextViewText(R.id.tv_name,"相关报告类型");
     }
 }

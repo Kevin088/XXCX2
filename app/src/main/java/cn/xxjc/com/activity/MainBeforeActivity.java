@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -17,9 +18,9 @@ import cn.xxjc.com.zxing.CaptureActivity;
 public class MainBeforeActivity extends FragmentActivity {
 
     @Bind(R.id.create_tables)
-    Button createTables;
+    TextView createTables;
     @Bind(R.id.history_tables)
-    Button historyTables;
+    TextView historyTables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
