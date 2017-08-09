@@ -3,46 +3,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_main_background"/>
+    <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_login"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="70dp"
         android:src="@mipmap/ic_main"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/detail"
         android:layout_below="@+id/image"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:textSize="24sp"
-        android:background="@drawable/bg_gray_slide"
-        android:textColor="@color/black_low_2"
-        android:padding="4dp"
-        android:text="基于图像识别技术的试验报告智能生成系统"/>
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/main_page">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/black_low_1"
+            android:padding="4dp"
+            android:text="基于图像识别技术的\n试验报告智能生成系统"/>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/create_tables"
+    <LinearLayout
+        android:id="@+id/ll_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:layout_marginLeft="50dp"
-        android:textColor="@color/black_low_2"
-        android:textSize="18sp"
-        android:background="@drawable/bg_gray_slide"
-        android:padding="4dp"
-        android:text="创建报表"/>
-    <TextView
-        android:id="@+id/history_tables"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_create_tables"/>
+        <TextView
+            android:id="@+id/create_tables"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_low_1"
+            android:textSize="18sp"
+            android:padding="4dp"
+            android:layout_marginTop="20dp"
+            android:text="创建报表"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="100dp"
         android:layout_marginRight="50dp"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/black_low_2"
-        android:textSize="18sp"
-        android:background="@drawable/bg_gray_slide"
-        android:padding="4dp"
-        android:text="历史记录"/>
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_history"/>
+        <TextView
+            android:id="@+id/history_tables"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_low_1"
+            android:textSize="18sp"
+            android:padding="4dp"
+            android:layout_marginTop="20dp"
+            android:text="历史记录"/>
+    </LinearLayout>
+
 </RelativeLayout>
