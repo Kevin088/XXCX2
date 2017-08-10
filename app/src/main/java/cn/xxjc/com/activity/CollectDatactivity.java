@@ -49,7 +49,7 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
     TextView tvSave;
     @Bind(R.id.layout_02)
     RelativeLayout layout02;
-    int index;
+    public static int index;
     private static final int REQUEST_CODE_GENERAL_WEBIMAGE = 108;
     InputDialog inputDialog;
     @Bind(R.id.title_detail)
@@ -112,11 +112,20 @@ public class CollectDatactivity extends FragmentActivity implements TitleBarView
 
         if(BaoBiaoActivity.info!=null){
             String[]info=BaoBiaoActivity.info;
+            String temp="";
             for(int i=0;i<info.length;i++){
                 if(info[i].contains("站名")){
-                    zhanming=info[i].substring(info[i].indexOf("：")+1);
+                    if(info[i].contains("："))
+                        temp="：";
+                    else
+                        temp=":";
+                    zhanming=info[i].substring(info[i].indexOf(temp)+1);
                 }else if(info[i].contains("运行编号")){
-                    bianhao=info[i].substring(info[i].indexOf("：")+1);
+                    if(info[i].contains("："))
+                        temp="：";
+                    else
+                        temp=":";
+                    bianhao=info[i].substring(info[i].indexOf(temp)+1);
                 }
             }
         }

@@ -59,8 +59,8 @@ public class BaoBiaoActivity extends FragmentActivity implements TitleBarView.On
         String dataInfo=getIntent().getStringExtra("data");
         erWeiMa1Bean= GsonUtils.fromJson(dataInfo,ErWeiMa1Bean.class);
         info=erWeiMa1Bean.info.split(";");
-        String info=erWeiMa1Bean.info.replace(";","\n");
-        headViewText.setText(info);
+        String info1=erWeiMa1Bean.info.replace(";","\n");
+        headViewText.setText(info1);
     }
     @Override
     public void onTitleBarClick(int titleId) {

@@ -25,9 +25,11 @@ public class TableResults {
     private String shiyanxingzhi;
     private Date testTime;
     private int state;
-    @Generated(hash = 1440722748)
+    private String otherInfo;
+    @Generated(hash = 950466515)
     public TableResults(Long id, String zhanming, String yunxingbianhao,
-            String shiyandanwei, String shiyanxingzhi, Date testTime, int state) {
+            String shiyandanwei, String shiyanxingzhi, Date testTime, int state,
+            String otherInfo) {
         this.id = id;
         this.zhanming = zhanming;
         this.yunxingbianhao = yunxingbianhao;
@@ -35,6 +37,7 @@ public class TableResults {
         this.shiyanxingzhi = shiyanxingzhi;
         this.testTime = testTime;
         this.state = state;
+        this.otherInfo = otherInfo;
     }
     @Generated(hash = 570877785)
     public TableResults() {
@@ -81,6 +84,11 @@ public class TableResults {
     public void setState(int state) {
         this.state = state;
     }
- 
+    public String getOtherInfo() {
+        return this.otherInfo;
+    }
+    public void setOtherInfo(String otherInfo) {
+        this.otherInfo = otherInfo;
+    }
 
 }

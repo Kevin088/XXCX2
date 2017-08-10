@@ -67,12 +67,17 @@ public class Home2Adapter extends BaseAdapter {
 
         }
         TableResults tableResults=list.get(position);
-        viewHolder.tvNmae.setText(tableResults.getZhanming()+"-"+
-                tableResults.getYunxingbianhao()+"-"+
-                tableResults.getShiyandanwei()+"-"+
-                tableResults.getShiyanxingzhi()+"-"+
-                Utils.FormatDateTime(tableResults.getTestTime())
-        );
+        if(position<2){
+            viewHolder.tvNmae.setText(tableResults.getOtherInfo());
+        }else{
+            viewHolder.tvNmae.setText(tableResults.getZhanming()+"-"+
+                    tableResults.getYunxingbianhao()+"-"+
+                    tableResults.getShiyandanwei()+"-"+
+                    tableResults.getShiyanxingzhi()+"-"+
+                    Utils.FormatDateTime(tableResults.getTestTime())
+            );
+        }
+
 
         return convertView;
     }

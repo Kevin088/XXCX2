@@ -37,13 +37,20 @@ public class HistoryActivity extends FragmentActivity implements TitleBarView.On
     LinearLayout activityBaoBiao;
     ArrayList<TableResults>totalData=new ArrayList<TableResults>();
     Home2Adapter adapter;
+    String position1="110kV大桥变电站-#1电容器组-电气试验班-例行-2014-03-20 10:15:00";
+    String position2="110kV大桥变电站-#1电容器组-电气试验班-例行-2016-04-23 15:30:00";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         title.withTitle("采集报表",0).withLeftImage(R.mipmap.ic_back).setOnTitleBarClickListener(this);
-
+        TableResults tableResults1=new TableResults();
+        tableResults1.setOtherInfo(position1);
+        TableResults tableResults2=new TableResults();
+        tableResults2.setOtherInfo(position2);
+        totalData.add(tableResults1);
+        totalData.add(tableResults2);
         totalData.addAll(App.getDaoSession().getTableResultsDao().loadAll());
 
         adapter=new Home2Adapter(this,totalData);
@@ -77,8 +84,11 @@ public class HistoryActivity extends FragmentActivity implements TitleBarView.On
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent=null;
-
-        if(i%2==0){
+        if(i==0){
+            intent=getWordFileIntent(new File(FileUtil.xmlPath,FileUtil.result_txt_001));
+        }else if(i==1){
+            intent=getWordFileIntent(new File(FileUtil.xmlPath,FileUtil.result_txt_002));
+        }else if(i%2==0){
             //正确的
             intent=getWordFileIntent(new File(FileUtil.xmlPath,FileUtil.result_txt_R));
         }else{

@@ -20,4 +20,7 @@ public class FileUtil {
 
     public static String result_txt_R= "正常报告-电容器组.doc";
     public static String result_txt_E= "异常报告-电容器组.doc";
+
+    public static String result_txt_001= "001.doc";
+    public static String result_txt_002= "002.doc";
 }

@@ -31,6 +31,7 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
         public final static Property Shiyanxingzhi = new Property(4, String.class, "shiyanxingzhi", false, "SHIYANXINGZHI");
         public final static Property TestTime = new Property(5, java.util.Date.class, "testTime", false, "TEST_TIME");
         public final static Property State = new Property(6, int.class, "state", false, "STATE");
+        public final static Property OtherInfo = new Property(7, String.class, "otherInfo", false, "OTHER_INFO");
     }
 
 
@@ -52,7 +53,8 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
                 "\"SHIYANDANWEI\" TEXT," + // 3: shiyandanwei
                 "\"SHIYANXINGZHI\" TEXT," + // 4: shiyanxingzhi
                 "\"TEST_TIME\" INTEGER," + // 5: testTime
-                "\"STATE\" INTEGER NOT NULL );"); // 6: state
+                "\"STATE\" INTEGER NOT NULL ," + // 6: state
+                "\"OTHER_INFO\" TEXT);"); // 7: otherInfo
     }
 
     /** Drops the underlying database table. */
@@ -95,6 +97,11 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
             stmt.bindLong(6, testTime.getTime());
         }
         stmt.bindLong(7, entity.getState());
+ 
+        String otherInfo = entity.getOtherInfo();
+        if (otherInfo != null) {
+            stmt.bindString(8, otherInfo);
+        }
     }
 
     @Override
@@ -131,6 +138,11 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
             stmt.bindLong(6, testTime.getTime());
         }
         stmt.bindLong(7, entity.getState());
+ 
+        String otherInfo = entity.getOtherInfo();
+        if (otherInfo != null) {
+            stmt.bindString(8, otherInfo);
+        }
     }
 
     @Override
@@ -147,7 +159,8 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // shiyandanwei
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // shiyanxingzhi
             cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)), // testTime
-            cursor.getInt(offset + 6) // state
+            cursor.getInt(offset + 6), // state
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // otherInfo
         );
         return entity;
     }
@@ -161,6 +174,7 @@ public class TableResultsDao extends AbstractDao<TableResults, Long> {
         entity.setShiyanxingzhi(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setTestTime(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
         entity.setState(cursor.getInt(offset + 6));
+        entity.setOtherInfo(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override

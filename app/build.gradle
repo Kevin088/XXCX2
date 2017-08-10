@@ -8,13 +8,13 @@ android {
         applicationId "cn.xxjc.com"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 4
+        versionCode 5
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     greendao {
-        schemaVersion 1
+        schemaVersion 2
         daoPackage 'cn.xxjc.com.dao'
         targetGenDir 'src/main/java'
     }

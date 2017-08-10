@@ -25,7 +25,6 @@ import android.view.Surface;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.io.File;
@@ -34,7 +33,6 @@ import java.io.IOException;
 
 import cn.xxjc.com.R;
 import cn.xxjc.com.utils.FileUtil;
-import cn.xxjc.com.utils.XmlParseUtil;
 import cn.xxjc.com.view.CameraView;
 import cn.xxjc.com.view.CropView;
 import cn.xxjc.com.view.FrameOverlayView;
@@ -262,7 +260,33 @@ public class CameraActivity extends FragmentActivity {
 
 
                         //displayImageView.setImageBitmap(bitmap);
-                        displayImageView.setImageResource(R.drawable.bg_camera);
+//                        if(App.getDaoSession().getTableResultsDao().count()% 2 == 0){
+//                            switch (CollectDatactivity.index){
+//                                case 1:
+//                                    displayImageView.setImageResource(R.mipmap.ic_right_1);
+//                                    break;
+//                                case 5:
+//                                    displayImageView.setImageResource(R.mipmap.ic_right_2);
+//                                    break;
+//                                case 9:
+//                                    displayImageView.setImageResource(R.mipmap.ic_right_3);
+//                                    break;
+//                            }
+//                        }else{
+//                            switch (CollectDatactivity.index){
+//                                case 1:
+//                                    displayImageView.setImageResource(R.mipmap.ic_error_1);
+//                                    break;
+//                                case 5:
+//                                    displayImageView.setImageResource(R.mipmap.ic_error_2);
+//                                    break;
+//                                case 9:
+//                                    displayImageView.setImageResource(R.mipmap.ic_error_3);
+//                                    break;
+//                            }
+//                        }
+
+
                         showResultConfirm();
 //                    }
                 }
