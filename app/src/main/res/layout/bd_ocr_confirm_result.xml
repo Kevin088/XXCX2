@@ -17,9 +17,6 @@
             android:layout_height="100dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:background="#f00"
-
-            android:src="@mipmap/ic_error_1"
             android:layout_gravity="center" />
 
     <ImageView

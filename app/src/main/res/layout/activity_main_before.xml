@@ -36,58 +36,70 @@
             android:textSize="24sp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/detail">
-        <LinearLayout
-            android:id="@+id/ll_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="120dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_create_tables" />
+        android:layout_below="@+id/detail"
+        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/create_tables"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/ll_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="4dp"
-                android:text="创建报表"
-                android:textColor="@color/black_low_1"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_create_tables" />
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_history" />
+                <TextView
+                    android:id="@+id/create_tables"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="4dp"
+                    android:text="创建报表"
+                    android:textColor="@color/black_low_1"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/history_tables"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/ll_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="4dp"
-                android:text="历史记录"
-                android:textColor="@color/black_low_1"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_history" />
+                <TextView
+                    android:id="@+id/history_tables"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="4dp"
+                    android:text="历史记录"
+                    android:textColor="@color/black_low_1"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
 </RelativeLayout>
