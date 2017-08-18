@@ -41,6 +41,7 @@ import cn.xxjc.com.view.ICameraControl;
 import cn.xxjc.com.view.MaskView;
 import cn.xxjc.com.view.OCRCameraLayout;
 import cn.xxjc.com.view.PermissionCallback;
+import cn.xxjc.com.view.ToastManager;
 
 public class CameraActivity extends FragmentActivity {
 
@@ -101,7 +102,21 @@ public class CameraActivity extends FragmentActivity {
         lightButton = (ImageView) findViewById(R.id.light_button);
         lightButton.setOnClickListener(lightButtonOnClickListener);
         findViewById(R.id.album_button).setOnClickListener(albumButtonOnClickListener);
-        findViewById(R.id.take_photo_button).setOnClickListener(takeButtonOnClickListener);
+
+        findViewById(R.id.take_photo_button).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                cameraView.takePicture(outputFile, takePictureCallback);
+                return true;
+            }
+        });
+        findViewById(R.id.take_photo_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastManager.showShortToast("拍摄图片与模板不一致，信息无法识别");
+            }
+        });
+
         findViewById(R.id.close_button).setOnClickListener(closeButtonOnClickListener);
 
         // confirm result;
